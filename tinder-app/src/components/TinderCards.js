@@ -1,18 +1,25 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import database from "./firebase";
 import TinderCard from "react-tinder-card";
 
-const TinderCards = () => {
+export const TinderCards = () => {
   const [people, setPeople] = useState([
     {
       name: "Steve Jobs",
-      url: "https://th.bing.com/th/id/OIP.olQVh4sGJxyErl427Lq1oAHaHa?w=214&h=214&c=7&r=0&o=5&dpr=1.25&pid=1.7",
+      url: "",
     },
     {
       name: "Elon Musk",
-      url: "https://th.bing.com/th/id/OIP.mgZT9yriurn6UAtp9LW-nAHaIA?w=159&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7",
+      url: "",
     },
   ]);
+  useEffect(() => {
+    database
+      .collection("people")
+      .onSnapshot((snapshot) =>
+        setPeople(snapshot.docs.map((doc) => doc.data()))
+      );
+  }, []);
 
   return (
     <div>

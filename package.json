@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "firebase": "^9.6.11",
     "react-tinder-card": "^1.4.5"
   }
 }
